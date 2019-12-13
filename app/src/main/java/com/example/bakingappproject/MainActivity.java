@@ -1,17 +1,17 @@
 package com.example.bakingappproject;
 
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
+import androidx.test.espresso.IdlingResource;
 
 import com.example.bakingappproject.DataModels.BakingReceipeDataModel;
 import com.example.bakingappproject.DataModels.ReceipeAdapterClickListener;
@@ -22,14 +22,16 @@ import com.example.bakingappproject.Fragments.ReceipeNameFragment;
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity implements ReceipeAdapterClickListener {
+public class MainActivity extends AppCompatActivity implements ReceipeAdapterClickListener, MessageDelayer.DelayerCallback {
 
     private static final String TAG = "TAGG";
-
-
     ReceipeNameFragment receipeNameFragment = new ReceipeNameFragment();
-
     FragmentManager fragmentManager = getSupportFragmentManager();
+
+    //For Testing
+    // The Idling Resource which will be null in production.
+    @Nullable
+    private SimpleIdlingResource simpleIdlingResource;
 
 
     @Override
@@ -44,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
 
 
     }
-
 
 
     @Override
@@ -93,8 +94,6 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
         }
 
 
-
-
     }
 
     @Override
@@ -114,4 +113,20 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
     }
 
 
+    @Override
+    public void onDone(String text) {
+
+    }
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResources() {
+        if (simpleIdlingResource == null) {
+
+            simpleIdlingResource = new SimpleIdlingResource();
+
+        }
+
+        return simpleIdlingResource;
+    }
 }
