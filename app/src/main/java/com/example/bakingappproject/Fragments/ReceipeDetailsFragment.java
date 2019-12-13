@@ -13,11 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,14 +27,11 @@ import com.example.bakingappproject.DataModels.IngrediendsDataModel;
 import com.example.bakingappproject.DataModels.ReceipeAdapterClickListener;
 import com.example.bakingappproject.DataModels.StepsDataModel;
 import com.example.bakingappproject.IngredientsAdapter;
-import com.example.bakingappproject.MainActivity;
 import com.example.bakingappproject.R;
 import com.example.bakingappproject.StepsAdapter;
 import com.example.bakingappproject.VideoPlayerActivity;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -164,7 +160,8 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
 
         String videoUrl = stepsDataModel.getVideoURL();
         if (videoUrl == null || videoUrl.isEmpty()) {
-            Log.d(TAG, "onStepItemClickListener: Video is not available");
+
+            Toast.makeText(getContext(), "Video not available for this step.", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
             intent.putExtra("video_url", videoUrl);

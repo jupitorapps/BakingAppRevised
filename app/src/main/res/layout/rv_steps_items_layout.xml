@@ -42,7 +42,8 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_video_player"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_step_short_description" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_step_short_description"
+        android:contentDescription="@string/app_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
     tools:context=".VideoPlayerActivity">
 
         <com.google.android.exoplayer2.ui.PlayerView
@@ -14,7 +13,5 @@
             app:show_buffering="when_playing"
             app:show_shuffle_button="true"
             app:default_artwork="@drawable/ic_video_player"/>
-
-
 
 </FrameLayout>

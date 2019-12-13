@@ -14,7 +14,7 @@
         android:minHeight="30dp" />
 
     <FrameLayout
-        android:id="@+id/container_for_fragment_details"
+        android:id="@+id/container_for_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:minHeight="30dp">

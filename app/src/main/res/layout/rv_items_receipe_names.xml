@@ -9,7 +9,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:src="@drawable/nutella"
-    android:scaleType="fitXY"/>
+    android:scaleType="fitXY"
+    android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/tv_item_receipe_name"

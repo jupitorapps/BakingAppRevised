@@ -34,15 +34,12 @@ public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClick
 
     private String TAG = "TAGG";
     private ArrayList<BakingReceipeDataModel> bakingReceipeArrayList;
-    private ArrayList<IngrediendsDataModel> ingredientsArrayList;
-    private ArrayList<StepsDataModel> stepsArrayList;
 
     private ReceipeAdapterClickListener receipeAdapterClickListener;
 
 
     @BindView(R.id.rv_receipenames)
     RecyclerView recyclerViewReceipeNames;
-    private ReceipeAdapter receipeAdapter;
 
     public ReceipeNameFragment() {
     }
@@ -55,8 +52,8 @@ public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClick
         ButterKnife.bind(this, rootView);
 
         bakingReceipeArrayList = new ArrayList<>();
-        ingredientsArrayList = new ArrayList<>();
-        stepsArrayList = new ArrayList<>();
+        ArrayList<IngrediendsDataModel> ingredientsArrayList = new ArrayList<>();
+        ArrayList<StepsDataModel> stepsArrayList = new ArrayList<>();
 
         getReceipeDataFromServer();
         if (getActivity() != null) {
@@ -98,7 +95,7 @@ public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClick
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerViewReceipeNames.setLayoutManager(linearLayoutManager);
-        receipeAdapter = new ReceipeAdapter(this);
+        ReceipeAdapter receipeAdapter = new ReceipeAdapter(this);
         recyclerViewReceipeNames.setAdapter(receipeAdapter);
         recyclerViewReceipeNames.hasFixedSize();
         receipeAdapter.loadData(bakingReceipeArrayList);

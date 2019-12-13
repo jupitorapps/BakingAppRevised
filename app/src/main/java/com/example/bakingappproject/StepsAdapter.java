@@ -1,7 +1,6 @@
 package com.example.bakingappproject;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bakingappproject.DataModels.ReceipeAdapterClickListener;
 import com.example.bakingappproject.DataModels.StepsDataModel;
-import com.example.bakingappproject.Fragments.ReceipeDetailsFragment;
 
 import java.util.ArrayList;
 

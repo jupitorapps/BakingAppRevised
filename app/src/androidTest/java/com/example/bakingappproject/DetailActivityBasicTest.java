@@ -1,7 +1,6 @@
 package com.example.bakingappproject;
 
 
-import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -19,8 +18,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class DetailActivityBasicTest {
 
-    private IdlingResource idlingResource;
-
     @Rule
     public ActivityTestRule<MainActivity> activityRule
             = new ActivityTestRule<>(MainActivity.class);
@@ -37,9 +34,6 @@ public class DetailActivityBasicTest {
 
 
     }
-
-
-
 
 
 }

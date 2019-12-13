@@ -4,10 +4,13 @@
     <string name="ingredients_demo_text">Graham Crackes Crumbs</string>
     <string name="ingredients_demo_quantity">2</string>
     <string name="ingredients_demo_measure"> Cups</string>
-    <string name="step_short_description_demo_text">Starting Prepartion Step</string>
+    <string name="step_short_description_demo_text">Starting Preparation Step</string>
     <string name="steps_description_demo_text">1. can be used for both video and audio playbacks. It renders video and subtitles in the case of video playback, and can display artwork included as metadata in audio files</string>
     <string name="ingredients">Ingredients</string>
     <string name="preparation_steps">Preparation Steps</string>
 
     <string name="select_recipe_name_tv">Please Select Recipe Name to view details</string>
+    <string name="please_select_recipe_name_to_view_details">Please Select Recipe Name to view details</string>
+    <string name="receipe_name">Receipe Name</string>
+    <string name="please_select_recipe">Please select recipe</string>
 </resources>

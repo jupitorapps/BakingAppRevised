@@ -16,7 +16,7 @@ import android.widget.RemoteViews;
  * Implementation of App Widget functionality.
  */
 public class BakingAppWidgetProvider extends AppWidgetProvider {
-    
+
     private String TAG = "TAGG";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -36,12 +36,16 @@ public class BakingAppWidgetProvider extends AppWidgetProvider {
                 .getDefaultSharedPreferences(context);
         String receipe_name = appSharedPrefs.getString("receipe_name", "Select Receipe");
 
-        views.setTextViewText(R.id.receipe_heading_name,receipe_name);
+        views.setTextViewText(R.id.receipe_heading_name, receipe_name);
         views.setOnClickPendingIntent(R.id.receipe_heading_name, pendingIntent);
 
 
+//random no is used to create unique appwidget id every time data is updated so that widget listview is updated
+        int randomNumber = (int) (Math.random() * 1000);
+
         Intent serviceIntent = new Intent(context, WidgetService.class);
-        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId + randomNumber);
+        intent.putExtra("random", randomNumber);
         serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
 
@@ -63,11 +67,11 @@ public class BakingAppWidgetProvider extends AppWidgetProvider {
 
 
             Intent serviceIntent = new Intent(context, WidgetService.class);
-            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
+            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
-            views.setRemoteAdapter(R.id.widget_list_view,serviceIntent);
-            views.setEmptyView(R.id.widget_list_view,R.id.widget_empty_view);
+            views.setRemoteAdapter(R.id.widget_list_view, serviceIntent);
+            views.setEmptyView(R.id.widget_list_view, R.id.widget_empty_view);
 
 
             Log.d(TAG, "onUpdate: ");

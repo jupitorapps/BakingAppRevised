@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:visibility="gone"
         android:layout_height="match_parent"
-        android:text="Please Select Recipe Name to view details"/>
+        android:text="@string/please_select_recipe_name_to_view_details"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

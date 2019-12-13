@@ -10,7 +10,8 @@
         android:layout_height="45dp"
         android:src="@drawable/nutella"
         android:visibility="gone"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/tv_item_receipe_name"

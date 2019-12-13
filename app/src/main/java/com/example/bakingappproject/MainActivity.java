@@ -22,7 +22,7 @@ import com.example.bakingappproject.Fragments.ReceipeNameFragment;
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity implements ReceipeAdapterClickListener, MessageDelayer.DelayerCallback {
+public class MainActivity extends AppCompatActivity implements ReceipeAdapterClickListener {
 
     private static final String TAG = "TAGG";
     ReceipeNameFragment receipeNameFragment = new ReceipeNameFragment();
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
                         .commit();
             }
 
-            fragmentManager.beginTransaction().replace(R.id.container_for_fragment_details, receipeDetailsFragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.container_for_fragment, receipeDetailsFragment).commit();
 
         } else {
             // In portrait
@@ -105,16 +105,12 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-            setTitle("Baking App");
+
         } else {
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+
             super.onBackPressed();
         }
-
-    }
-
-
-    @Override
-    public void onDone(String text) {
 
     }
 

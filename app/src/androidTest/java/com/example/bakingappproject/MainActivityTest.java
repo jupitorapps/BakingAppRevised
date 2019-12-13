@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivityTest1 {
+public class MainActivityTest {
 
     private IdlingResource idlingResource;
 
@@ -126,8 +126,6 @@ public class MainActivityTest1 {
                                 0),
                         isDisplayed()));
         frameLayout.check(matches(isDisplayed()));
-
-
 
 
     }

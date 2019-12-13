@@ -10,7 +10,6 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.example.bakingappproject.DataModels.IngrediendsDataModel;
-import com.example.bakingappproject.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -116,6 +115,8 @@ public class WidgetService extends RemoteViewsService {
 
 
     }
+
+
 
 
 
