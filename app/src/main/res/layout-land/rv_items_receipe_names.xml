@@ -8,23 +8,34 @@
         android:id="@+id/item_image_view"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/nutella"
-        android:visibility="gone"
+        android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
-        android:contentDescription="@string/app_name" />
+        android:src="@drawable/nutella"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_item_receipe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
         android:fontFamily="sans-serif-condensed-medium"
         android:hint="@string/paneer_pakoda"
         android:padding="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:paddingBottom="2dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/rv_receipe_item_serving_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="start"
+        android:hint="@string/servings_text"
+        android:textColor="@color/colorPrimaryDark" />
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:alpha="0.5"
-        android:background="#D6D3D3"/>
+        android:background="#D6D3D3" />
 </LinearLayout>

@@ -6,10 +6,10 @@ public class IngrediendsDataModel {
 
 
     @SerializedName("quantity")
-    private float quantity;
+    private final float quantity;
     @SerializedName("measure")
-    private String measure;
-    private String ingredient;
+    private final String measure;
+    private final String ingredient;
 
 
     public IngrediendsDataModel(int quantity, String measure, String ingredient) {

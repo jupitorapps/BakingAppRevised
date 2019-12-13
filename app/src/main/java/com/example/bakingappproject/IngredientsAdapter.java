@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder> {
 
-    private ArrayList<IngrediendsDataModel> ingrediendsDataModelArrayList = new ArrayList<>();
+    private final ArrayList<IngrediendsDataModel> ingrediendsDataModelArrayList = new ArrayList<>();
     private String TAG = "TAGG";
 
 

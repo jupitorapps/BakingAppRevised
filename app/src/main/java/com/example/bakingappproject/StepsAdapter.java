@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHolder> {
 
-    private ArrayList<StepsDataModel> stepsDataModelArrayList = new ArrayList<>();
+    private final ArrayList<StepsDataModel> stepsDataModelArrayList = new ArrayList<>();
     private Context context;
 
     private final ReceipeAdapterClickListener clickListener;

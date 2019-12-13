@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClickListener {
 
-    private String TAG = "TAGG";
+    private final String TAG = "TAGG";
     private ArrayList<BakingReceipeDataModel> bakingReceipeArrayList;
 
     private ReceipeAdapterClickListener receipeAdapterClickListener;

@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 
 public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterClickListener {
 
-    private String TAG = "TAGG";
+    private final String TAG = "TAGG";
 
     //  private ArrayList<IngrediendsDataModel> ingrediendsDataModelArrayList;
     //  private ArrayList<StepsDataModel> stepsDataModelArrayList;
@@ -64,13 +64,13 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
 
         View rootView = inflater.inflate(R.layout.fragment_receipe_details, container, false);
 
-        BakingReceipeDataModel bakingReceipeDataModel = null;
+        BakingReceipeDataModel bakingReceipeDataModel;
 
         if (getArguments() != null) {
 
             bakingReceipeDataModel = getArguments().getParcelable("recipe_data");
 
-            Log.d(TAG, "onCreateView: Data In Fragment: "+bakingReceipeDataModel.getIngredients().get(0).getIngredient());
+           // Log.d(TAG, "onCreateView: Data In Fragment: "+bakingReceipeDataModel.getIngredients().get(0).getIngredient());
 
             ButterKnife.bind(this, rootView);
 

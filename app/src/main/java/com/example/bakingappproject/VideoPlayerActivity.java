@@ -18,7 +18,7 @@ import com.google.android.exoplayer2.util.Util;
 public class VideoPlayerActivity extends AppCompatActivity {
 
     private static final String TAG = "TAGG";
-    SimpleExoPlayer player;
+    private SimpleExoPlayer player;
 
 
     @Override
@@ -61,8 +61,4 @@ public class VideoPlayerActivity extends AppCompatActivity {
       //  Log.d(TAG, "onPause: Player Released");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }
