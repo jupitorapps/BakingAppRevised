@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ import butterknife.ButterKnife;
 
 public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterClickListener {
 
-    private final String TAG = "TAGG";
+    private String TAG = "TAGG";
 
     //  private ArrayList<IngrediendsDataModel> ingrediendsDataModelArrayList;
     //  private ArrayList<StepsDataModel> stepsDataModelArrayList;
@@ -64,13 +65,13 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
 
         View rootView = inflater.inflate(R.layout.fragment_receipe_details, container, false);
 
-        BakingReceipeDataModel bakingReceipeDataModel;
+        BakingReceipeDataModel bakingReceipeDataModel = null;
 
         if (getArguments() != null) {
 
             bakingReceipeDataModel = getArguments().getParcelable("recipe_data");
 
-           // Log.d(TAG, "onCreateView: Data In Fragment: "+bakingReceipeDataModel.getIngredients().get(0).getIngredient());
+            Log.d(TAG, "onCreateView: Data In Fragment: " + bakingReceipeDataModel.getIngredients().get(0).getIngredient());
 
             ButterKnife.bind(this, rootView);
 
@@ -101,7 +102,6 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
 
         return rootView;
     }
-
 
 
     private void saveReceipeNameForWidgetHeading(String receipeName) {
@@ -156,15 +156,19 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
     }
 
     @Override
-    public void onStepItemClickListener(StepsDataModel stepsDataModel) {
+    public void onStepItemClickListener(int position, ArrayList<StepsDataModel> stepsDataModelArrayList) {
 
-        String videoUrl = stepsDataModel.getVideoURL();
+        String videoUrl = stepsDataModelArrayList.get(position).getVideoURL();
         if (videoUrl == null || videoUrl.isEmpty()) {
 
             Toast.makeText(getContext(), "Video not available for this step.", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
             intent.putExtra("video_url", videoUrl);
+
+            intent.putExtra("clicked_position",position);
+            intent.putExtra("steps_data",stepsDataModelArrayList);
+
             startActivity(intent);
         }
 

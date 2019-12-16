@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClickListener {
 
-    private final String TAG = "TAGG";
+    private String TAG = "TAGG";
     private ArrayList<BakingReceipeDataModel> bakingReceipeArrayList;
 
     private ReceipeAdapterClickListener receipeAdapterClickListener;
@@ -112,7 +112,7 @@ public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClick
     }
 
     @Override
-    public void onStepItemClickListener(StepsDataModel stepsDataModel) {
+    public void onStepItemClickListener(  int position, ArrayList<StepsDataModel> stepsDataModelArrayList) {
 
     }
 

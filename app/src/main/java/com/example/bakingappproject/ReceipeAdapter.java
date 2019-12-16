@@ -25,7 +25,7 @@ public class ReceipeAdapter extends RecyclerView.Adapter<ReceipeAdapter.ReceipeV
     private final ReceipeAdapterClickListener clickListener;
     private Context context;
 
-    private final ArrayList<BakingReceipeDataModel> bakingReceipeDataModelArrayList = new ArrayList<>();
+    private ArrayList<BakingReceipeDataModel> bakingReceipeDataModelArrayList = new ArrayList<>();
 
     public ReceipeAdapter(ReceipeAdapterClickListener receipeAdapterClickListener) {
         this.clickListener = receipeAdapterClickListener;
@@ -56,9 +56,6 @@ public class ReceipeAdapter extends RecyclerView.Adapter<ReceipeAdapter.ReceipeV
 
         BakingReceipeDataModel currentReceipe = bakingReceipeDataModelArrayList.get(position);
         holder.item_receipe_name.setText(currentReceipe.getName());
-        holder.receipe_item_serving.setText(currentReceipe.getServings()+" Servings");
-
-        //Log.d("TAGG", "onBindViewHolder: Servings: "+currentReceipe.getServings()+" Servings");
 
         if (context != null) {
             Glide.with(context)
@@ -86,7 +83,6 @@ public class ReceipeAdapter extends RecyclerView.Adapter<ReceipeAdapter.ReceipeV
         TextView item_receipe_name;
         @BindView(R.id.item_image_view)
         ImageView item_imgae_view;
-        @BindView(R.id.rv_receipe_item_serving_tv) TextView receipe_item_serving;
 
 
         ReceipeViewHolder(@NonNull View itemView) {

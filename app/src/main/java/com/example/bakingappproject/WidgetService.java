@@ -30,12 +30,13 @@ public class WidgetService extends RemoteViewsService {
     class WidgetItemFactory implements RemoteViewsFactory {
 
 
-        private final Context context;
+        private Context context;
+        private int appWidgetId;
 
 
         WidgetItemFactory(Context context, Intent intent) {
             this.context = context;
-            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+            this.appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         }
 
         @Override

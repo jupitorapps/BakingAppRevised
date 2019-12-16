@@ -19,14 +19,15 @@ import com.example.bakingappproject.DataModels.StepsDataModel;
 import com.example.bakingappproject.Fragments.ReceipeDetailsFragment;
 import com.example.bakingappproject.Fragments.ReceipeNameFragment;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements ReceipeAdapterClickListener {
 
     private static final String TAG = "TAGG";
-    private final ReceipeNameFragment receipeNameFragment = new ReceipeNameFragment();
-    private final FragmentManager fragmentManager = getSupportFragmentManager();
+    ReceipeNameFragment receipeNameFragment = new ReceipeNameFragment();
+    FragmentManager fragmentManager = getSupportFragmentManager();
 
     //For Testing
     // The Idling Resource which will be null in production.
@@ -43,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
                 .add(R.id.container_for_fragments, receipeNameFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .commit();
+
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
         return false;
 
     }
+
 
     @Override
     public void onItemClicks(BakingReceipeDataModel bakingReceipeDataModel) {
@@ -93,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
     }
 
     @Override
-    public void onStepItemClickListener(StepsDataModel stepsDataModel) {
+    public void onStepItemClickListener(int position, ArrayList<StepsDataModel> stepsDataModelArrayList) {
 
     }
 

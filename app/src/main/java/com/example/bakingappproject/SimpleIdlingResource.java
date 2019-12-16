@@ -3,14 +3,13 @@ package com.example.bakingappproject;
 import androidx.annotation.Nullable;
 import androidx.test.espresso.IdlingResource;
 
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class SimpleIdlingResource implements IdlingResource {
+public class SimpleIdlingResource implements IdlingResource {
 
     @Nullable
     private volatile ResourceCallback resourceCallback;
-    private final AtomicBoolean isIdleNow = new AtomicBoolean(true);
+    private AtomicBoolean isIdleNow = new AtomicBoolean(true);
 
     @Override
     public String getName() {
@@ -31,7 +30,7 @@ class SimpleIdlingResource implements IdlingResource {
 
     public void setIdleState(boolean isIdleNow) {
         if (isIdleNow && resourceCallback != null) {
-            Objects.requireNonNull(resourceCallback).onTransitionToIdle();
+            resourceCallback.onTransitionToIdle();
         }
     }
 }

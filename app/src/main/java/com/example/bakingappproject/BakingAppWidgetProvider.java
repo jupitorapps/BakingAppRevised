@@ -17,10 +17,10 @@ import android.widget.RemoteViews;
  */
 public class BakingAppWidgetProvider extends AppWidgetProvider {
 
-    private final String TAG = "TAGG";
+    private String TAG = "TAGG";
 
-    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                        int appWidgetId) {
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                int appWidgetId) {
 
 //        CharSequence widgetText = context.getString(R.string.appwidget_text);
 //        // Construct the RemoteViews object

@@ -3,16 +3,20 @@ package com.example.bakingappproject.DataModels;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class BakingReceipeDataModel  implements  Parcelable{
 
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
     private ArrayList<IngrediendsDataModel> ingredients;
     private ArrayList<StepsDataModel> steps;
-    private final int servings;
-    private final String imageUrl;
+    private int servings;
+    private String imageUrl;
 
     public BakingReceipeDataModel(int id, String name, ArrayList<IngrediendsDataModel> ingredients, ArrayList<StepsDataModel> steps, int servings, String imageUrl) {
         this.id = id;
@@ -23,7 +27,7 @@ public class BakingReceipeDataModel  implements  Parcelable{
         this.imageUrl = imageUrl;
     }
 
-    private BakingReceipeDataModel(Parcel in) {
+    protected BakingReceipeDataModel(Parcel in) {
         id = in.readInt();
         name = in.readString();
         servings = in.readInt();
