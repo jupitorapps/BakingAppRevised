@@ -58,6 +58,7 @@ public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClick
         getReceipeDataFromServer();
         if (getActivity() != null) {
             getActivity().setTitle("Baking Receipe App");
+            
         }
 
         return rootView;
@@ -72,7 +73,7 @@ public class ReceipeNameFragment extends Fragment implements ReceipeAdapterClick
         call.enqueue(new Callback<ArrayList<BakingReceipeDataModel>>() {
             @Override
             public void onResponse(Call<ArrayList<BakingReceipeDataModel>> call, Response<ArrayList<BakingReceipeDataModel>> response) {
-                // Log.d(TAG, "onResponse: "+response.body());
+                 Log.d(TAG, "onResponse: "+response.body());
 
                 bakingReceipeArrayList = response.body();
                 setupUi(bakingReceipeArrayList);
