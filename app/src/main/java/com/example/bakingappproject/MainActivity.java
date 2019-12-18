@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements ReceipeAdapterCli
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 

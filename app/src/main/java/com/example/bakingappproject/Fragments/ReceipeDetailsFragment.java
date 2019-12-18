@@ -43,10 +43,6 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
 
     private String TAG = "TAGG";
 
-    //  private ArrayList<IngrediendsDataModel> ingrediendsDataModelArrayList;
-    //  private ArrayList<StepsDataModel> stepsDataModelArrayList;
-
-    private ReceipeAdapterClickListener receipeAdapterClickListener;
     static final String SHARED_PREFS = "prefs";
 
     @BindView(R.id.rv_ingredients)
@@ -70,8 +66,6 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
         if (getArguments() != null) {
 
             bakingReceipeDataModel = getArguments().getParcelable("recipe_data");
-
-            Log.d(TAG, "onCreateView: Data In Fragment: " + bakingReceipeDataModel.getIngredients().get(0).getIngredient());
 
             ButterKnife.bind(this, rootView);
 
@@ -161,7 +155,7 @@ public class ReceipeDetailsFragment extends Fragment implements ReceipeAdapterCl
         String videoUrl = stepsDataModelArrayList.get(position).getVideoURL();
         if (videoUrl == null || videoUrl.isEmpty()) {
 
-            Toast.makeText(getContext(), "Video not available for this step.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.video_not_available), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
             intent.putExtra("video_url", videoUrl);

@@ -6,11 +6,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bakingappproject.DataModels.BakingReceipeDataModel;
+import com.example.bakingappproject.DataModels.ReceipeAdapterClickListener;
 import com.example.bakingappproject.DataModels.StepsDataModel;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -46,13 +53,16 @@ import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class VideoPlayerActivity extends AppCompatActivity {
+public class VideoPlayerActivity extends AppCompatActivity implements ReceipeAdapterClickListener {
 
     private static final String TAG = "TAGG";
     SimpleExoPlayer player;
     String clicked_video_url = "";
     int total_videos = 0;
+
+    RecyclerView stepsRecyclerView;
 
 
     @Override
@@ -61,74 +71,58 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_video_player);
 
+        stepsRecyclerView = findViewById(R.id.rv_steps_player_screen);
+
         Intent intent = getIntent();
-        int clicked_position = intent.getIntExtra("clicked_position",0);
+        int clicked_position = intent.getIntExtra("clicked_position", 0);
 
         ArrayList<StepsDataModel> stepsDataModelArrayList = intent.getParcelableArrayListExtra("steps_data");
 
-        if (stepsDataModelArrayList != null){
-             clicked_video_url = stepsDataModelArrayList.get(clicked_position).getVideoURL();
+        if (stepsDataModelArrayList != null) {
+            clicked_video_url = stepsDataModelArrayList.get(clicked_position).getVideoURL();
             total_videos = stepsDataModelArrayList.size();
         }
 
-
         PlayerView playerView = findViewById(R.id.video_player_view);
 
+        TrackSelector trackSelector = new DefaultTrackSelector();
+        player = ExoPlayerFactory.newSimpleInstance(getApplicationContext(), trackSelector);
 
-          //  PlayerView playerView = findViewById(R.id.video_player_view);
+        playerView.setPlayer(player);
 
-            TrackSelector trackSelector = new DefaultTrackSelector();
-            player = ExoPlayerFactory.newSimpleInstance(getApplicationContext(),trackSelector);
+        if (stepsDataModelArrayList != null) {
+            playVideo(clicked_position,stepsDataModelArrayList);
+        }
 
-            playerView.setPlayer(player);
-
-
-            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getApplicationContext(),
-                    Util.getUserAgent(getApplicationContext(), "Baking App"));
-
-//            MediaSource clicked_video_source = new ProgressiveMediaSource.Factory(dataSourceFactory)
-//                    .createMediaSource(Uri.parse(clicked_video_url));
-//            MediaSource clicked_video_source2 = new ProgressiveMediaSource.Factory(dataSourceFactory)
-//                    .createMediaSource(Uri.parse(stepsDataModelArrayList.get(clicked_position+1).getVideoURL()));
-
-
-
-            ConcatenatingMediaSource concatenatingMediaSource = new ConcatenatingMediaSource();
-            //concatenatingMediaSource.addMediaSource(clicked_video_source);
-
-            for (int i=0; i<= total_videos-1; i++){
-
-                MediaSource video_source = new ProgressiveMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(Uri.parse(stepsDataModelArrayList.get(i).getVideoURL()));
-                concatenatingMediaSource.addMediaSource(video_source);
-
-            //    Log.d(TAG, "onCreate: Video Source: "+video_source);
-              //  Log.d(TAG, "onCreate: i is: "+i);
-
-
-            }
-
-        Log.d(TAG, "onCreate: concanating media source size: "+concatenatingMediaSource.getSize());
-
-        player.prepare(concatenatingMediaSource);
-        player.setPlayWhenReady(true);
-        
-        player.addListener(new EventListener() {
-            @Override
-            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                Log.d(TAG, "onPlayerStateChanged: "+playbackState);
-
-            }
-        });
+        setupStepsList(stepsDataModelArrayList);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void playVideo(int position, ArrayList<StepsDataModel> stepsDataModelArrayList){
+
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getApplicationContext(),
+                Util.getUserAgent(getApplicationContext(), "Baking App"));
+
+        MediaSource clicked_video_source = new ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(Uri.parse(stepsDataModelArrayList.get(position).getVideoURL()));
+
+        player.prepare(clicked_video_source);
+        player.setPlayWhenReady(true);
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
+        player.stop();
         player.release();
-      //  Log.d(TAG, "onPause: Player Released");
     }
 
     @Override
@@ -137,4 +131,31 @@ public class VideoPlayerActivity extends AppCompatActivity {
     }
 
 
+    private void setupStepsList(ArrayList<StepsDataModel> stepsDataModel) {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        stepsRecyclerView.setLayoutManager(linearLayoutManager);
+        StepsAdapter stepsAdapter = new StepsAdapter(this);
+        stepsRecyclerView.hasFixedSize();
+        stepsRecyclerView.setAdapter(stepsAdapter);
+        stepsAdapter.loadData(stepsDataModel);
+    }
+
+
+    @Override
+    public void onItemClicks(BakingReceipeDataModel bakingReceipeDataModel) {
+
+    }
+
+    @Override
+    public void onStepItemClickListener(int position, ArrayList<StepsDataModel> stepsDataModelArrayList) {
+
+        if (stepsDataModelArrayList.get(position).getVideoURL().isEmpty()){
+            Toast.makeText(this, getString(R.string.video_not_available), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        playVideo(position,stepsDataModelArrayList);
+
+    }
 }

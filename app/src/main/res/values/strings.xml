@@ -13,4 +13,5 @@
     <string name="please_select_recipe_name_to_view_details">Please Select Recipe Name to view details</string>
     <string name="receipe_name">Receipe Name</string>
     <string name="please_select_recipe">Please select recipe</string>
+    <string name="video_not_available">Video not available for this step</string>
 </resources>
